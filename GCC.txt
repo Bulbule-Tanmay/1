@@ -1,0 +1,1588 @@
+aim:implement linear search and binary search for a given array.
+ 
+code 1:
+#include <stdio.h>
+void linear_search(int arr[], int n, int key);
+void bin_search(int arr[], int n, int key);
+
+int main()
+{
+    int arr[10];
+    int n, key;
+
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
+
+    printf("Enter the %d sorted integers:\n", n);
+
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &arr[i]);
+    }
+
+    printf("Enter the element to search: ");
+    scanf("%d", &key);
+
+    linear_search(arr, n, key);
+    bin_search(arr, n, key);
+
+    return 0;
+}
+
+void bin_search(int arr[], int n, int key)
+{
+    int low = 0;
+    int high = n - 1;
+    int mid;
+
+    while (low <= high)
+    {
+        mid = (low + high) / 2;
+
+        if (arr[mid] > key)
+        {
+            high = mid - 1;
+        }
+        else if (arr[mid] < key)
+        {
+            low = mid + 1;
+        }
+        else
+        {
+            printf("\nBy Binary Search:\n");
+            printf("Element found at index %d\n", mid);
+            return;
+        }
+    }
+
+    printf("\nBy Binary Search:\n");
+    printf("Element not found.\n");
+}
+
+void linear_search(int arr[], int n, int key)
+{
+    int i;
+
+    for (i = 0; i < n; i++)
+    {
+        if (arr[i] == key)
+        {
+            printf("\nBy Linear Search:\n");
+            printf("Element found at index %d\n", i);
+            return;
+        }
+    }
+
+    printf("\nBy Linear Search:\n");
+    printf("Element not found.\n");
+}
+
+Algorithm in C
+1. Start
+2. Declare a structure named Teacher.
+3. Declare the variables name, dept, subject, and salary.
+4. Create a variable t1 of structure type Teacher.
+5. Assign "shivam" to t1.name.
+6. Display the teacher's name.
+7. Stop
+
+2.aim:-2. Arrange the list of students according to roll numbers in ascending order using:
+
+a) Bubble Sort
+b) Insertion Sort
+c) Quick Sort
+code:
+#include <stdio.h>
+
+void bubbleSort(int arr[], int n)
+{
+    for (int i = 0; i < n - 1; i++)
+    {
+        for (int j = 0; j < n - i - 1; j++)
+        {
+            if (arr[j] > arr[j + 1])
+            {
+                int t = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = t;
+            }
+        }
+    }
+}
+
+void insertionSort(int arr[], int n)
+{
+    for (int i = 1; i < n; i++)
+    {
+        int key = arr[i];
+        int j = i - 1;
+
+        while (j >= 0 && arr[j] > key)
+        {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+
+        arr[j + 1] = key;
+    }
+}
+
+int partition(int arr[], int low, int high)
+{
+    int pivot = arr[high];
+    int i = low - 1;
+
+    for (int j = low; j < high; j++)
+    {
+        if (arr[j] <= pivot)
+        {
+            i++;
+
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    }
+
+    int temp = arr[i + 1];
+    arr[i + 1] = arr[high];
+    arr[high] = temp;
+
+    return i + 1;
+}
+
+void quickSort(int arr[], int low, int high)
+{
+    if (low < high)
+    {
+        int pivotIndex = partition(arr, low, high);
+
+        quickSort(arr, low, pivotIndex - 1);
+        quickSort(arr, pivotIndex + 1, high);
+    }
+}
+
+int main()
+{
+    int arr[100], bubble[100], insertion[100], quick[100];
+    int n, i;
+
+    printf("Enter the no. of elements: ");
+    scanf("%d", &n);
+
+    if (n < 1 || n > 100)
+    {
+        printf("Invalid number of elements.\n");
+        return 1;
+    }
+
+    printf("Enter the elements: ");
+    for (i = 0; i < n; i++)
+    {
+        scanf("%d", &arr[i]);
+    }
+
+    for (i = 0; i < n; i++)
+    {
+        bubble[i] = arr[i];
+        insertion[i] = arr[i];
+        quick[i] = arr[i];
+    }
+
+    bubbleSort(bubble, n);
+    insertionSort(insertion, n);
+    quickSort(quick, 0, n - 1);
+
+    printf("The sorted array by Bubble Sort: ");
+    for (i = 0; i < n; i++)
+    {
+        printf("%d\t", bubble[i]);
+    }
+
+    printf("\nThe sorted array by Insertion Sort: ");
+    for (i = 0; i < n; i++)
+    {
+        printf("%d\t", insertion[i]);
+    }
+
+    printf("\nThe sorted array by Quick Sort: ");
+    for (i = 0; i < n; i++)
+    {
+        printf("%d\t", quick[i]);
+    }
+
+    printf("\n");
+
+    return 0;
+}
+
+Algorithm: Bubble Sort, Insertion Sort and Quick Sort in C
+1. Start.
+2. Declare an array to store the elements.
+3. Read the number of elements n.
+4. Read n elements from the user.
+5. Copy the original array into three arrays: bubble, insertion, and quick.
+6. Bubble Sort:
+   - Compare adjacent elements.
+   - If the first element is greater than the second, swap them.
+   - Repeat until the array is sorted.
+7. Insertion Sort:
+   - Select an element as key.
+   - Compare it with previous elements.
+   - Shift larger elements one position to the right.
+   - Insert the key at its correct position.
+8. Quick Sort:
+   - Select the last element as the pivot.
+   - Partition the array so smaller elements come before the pivot and larger elements come after it.
+   - Recursively sort the left and right subarrays.
+9. Display the sorted arrays obtained using all three sorting techniques.
+10. Stop.
+
+aim:3. Implement a sparse matrix with operations like:
+
+a) Initialize an empty sparse matrix.
+b) Insert an element into a sparse matrix.
+c) Row-column transpose of a matrix, etc.
+
+code:
+#include <stdio.h>
+
+#define MAX 100
+
+struct Element
+{
+    int row;
+    int col;
+    int value;
+};
+
+struct Element sparse[MAX];
+int count = 0;
+int rows, cols;
+
+void initialize()
+{
+    count = 0;
+
+    printf("Enter number of rows: ");
+    scanf("%d", &rows);
+
+    printf("Enter number of columns: ");
+    scanf("%d", &cols);
+
+    printf("Empty sparse matrix initialized.\n");
+}
+
+void insert()
+{
+    int r, c, val;
+
+    if (count >= MAX)
+    {
+        printf("Sparse matrix is full!\n");
+        return;
+    }
+
+    printf("Enter row, column and value: ");
+    scanf("%d %d %d", &r, &c, &val);
+
+    if (r < 0 || r >= rows || c < 0 || c >= cols)
+    {
+        printf("Invalid row or column!\n");
+        return;
+    }
+
+    if (val == 0)
+    {
+        printf("Zero values are not stored.\n");
+        return;
+    }
+
+    sparse[count].row = r;
+    sparse[count].col = c;
+    sparse[count].value = val;
+    count++;
+
+    printf("Element inserted successfully.\n");
+}
+
+void display()
+{
+    int i;
+
+    printf("\nRow\tColumn\tValue\n");
+
+    for (i = 0; i < count; i++)
+    {
+        printf("%d\t%d\t%d\n",
+               sparse[i].row,
+               sparse[i].col,
+               sparse[i].value);
+    }
+}
+
+void sortMatrix()
+{
+    int i, j;
+    struct Element temp;
+
+    for (i = 0; i < count - 1; i++)
+    {
+        for (j = 0; j < count - i - 1; j++)
+        {
+            if (sparse[j].row > sparse[j + 1].row ||
+                (sparse[j].row == sparse[j + 1].row &&
+                 sparse[j].col > sparse[j + 1].col))
+            {
+                temp = sparse[j];
+                sparse[j] = sparse[j + 1];
+                sparse[j + 1] = temp;
+            }
+        }
+    }
+
+    printf("Sparse matrix sorted successfully.\n");
+}
+
+void transpose()
+{
+    int i;
+    struct Element temp;
+
+    for (i = 0; i < count; i++)
+    {
+        temp.row = sparse[i].row;
+        sparse[i].row = sparse[i].col;
+        sparse[i].col = temp.row;
+    }
+
+    temp.row = rows;
+    rows = cols;
+    cols = temp.row;
+
+    sortMatrix();
+
+    printf("Transpose completed.\n");
+    display();
+}
+
+int main()
+{
+    int choice;
+
+    initialize();
+
+    do
+    {
+        printf("\n--- Sparse Matrix Menu ---\n");
+        printf("1. Insert Element\n");
+        printf("2. Display Matrix\n");
+        printf("3. Sort by Row-Column\n");
+        printf("4. Transpose Matrix\n");
+        printf("5. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
+            case 1:
+                insert();
+                break;
+
+            case 2:
+                display();
+                break;
+
+            case 3:
+                sortMatrix();
+                display();
+                break;
+
+            case 4:
+                transpose();
+                break;
+
+            case 5:
+                printf("Program terminated.\n");
+                break;
+
+            default:
+                printf("Invalid choice!\n");
+        }
+
+    } while (choice != 5);
+
+    return 0;
+}
+algorithum:
+Algorithm: Sparse Matrix Operations in C
+1. Start.
+2. Define a structure Element containing row, col, and value.
+3. Declare an array sparse[MAX] and initialize count = 0.
+4. Read the number of rows and columns to initialize the sparse matrix.
+5. Display the menu with the following operations:
+   - Insert Element
+   - Display Matrix
+   - Sort by Row-Column
+   - Transpose Matrix
+   - Exit
+6. Insert Element: Read the row, column, and value. Validate the position and insert the non-zero element into the array.
+7. Display Matrix: Display the row, column, and value of each stored element.
+8. Sort Matrix: Sort the elements in ascending order by row and then by column.
+9. Transpose Matrix: Interchange the row and column of every element, swap the number of rows and columns, sort the elements, and display the transposed matrix.
+10. Repeat the menu until the user selects Exit.
+11. Stop.
+
+4 aim:4. Write functions to:
+
+a) Add and delete nodes in a linked list.
+b) Compute the total number of nodes in the linked list.
+c) Display the list in reverse order using recursion.
+
+code:
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node
+{
+    int data;
+    struct node *next;
+};
+
+struct node *head = NULL;
+
+void insert()
+{
+    struct node *newnode, *temp;
+    int value;
+
+    newnode = (struct node *)malloc(sizeof(struct node));
+
+    printf("Enter data: ");
+    scanf("%d", &value);
+
+    newnode->data = value;
+    newnode->next = NULL;
+
+    if (head == NULL)
+    {
+        head = newnode;
+    }
+    else
+    {
+        temp = head;
+
+        while (temp->next != NULL)
+        {
+            temp = temp->next;
+        }
+
+        temp->next = newnode;
+    }
+
+    printf("Node inserted successfully.\n");
+}
+
+void deleteNode()
+{
+    struct node *temp;
+
+    if (head == NULL)
+    {
+        printf("List is empty.\n");
+    }
+    else
+    {
+        temp = head;
+        head = head->next;
+        free(temp);
+
+        printf("Node deleted successfully.\n");
+    }
+}
+
+void countNodes()
+{
+    struct node *temp = head;
+    int count = 0;
+
+    while (temp != NULL)
+    {
+        count++;
+        temp = temp->next;
+    }
+
+    printf("Total number of nodes = %d\n", count);
+}
+
+void display()
+{
+    struct node *temp = head;
+
+    if (head == NULL)
+    {
+        printf("List is empty.\n");
+        return;
+    }
+
+    printf("Linked List: ");
+
+    while (temp != NULL)
+    {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    }
+
+    printf("NULL\n");
+}
+
+void reverseDisplay(struct node *temp)
+{
+    if (temp == NULL)
+    {
+        return;
+    }
+
+    reverseDisplay(temp->next);
+    printf("%d -> ", temp->data);
+}
+
+int main()
+{
+    int choice;
+
+    do
+    {
+        printf("\n--- Linked List Menu ---\n");
+        printf("1. Insert Node\n");
+        printf("2. Delete Node\n");
+        printf("3. Count Nodes\n");
+        printf("4. Display List\n");
+        printf("5. Display Reverse (Recursion)\n");
+        printf("6. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
+            case 1:
+                insert();
+                break;
+
+            case 2:
+                deleteNode();
+                break;
+
+            case 3:
+                countNodes();
+                break;
+
+            case 4:
+                display();
+                break;
+
+            case 5:
+                printf("Reverse List: ");
+                reverseDisplay(head);
+                printf("NULL\n");
+                break;
+
+            case 6:
+                printf("Program terminated.\n");
+                break;
+
+            default:
+                printf("Invalid choice!\n");
+        }
+
+    } while (choice != 6);
+
+    return 0;
+}
+ 
+Algorithm: Singly Linked List in C
+1. Start the program.
+2. Initialize head = NULL.
+3. Display the menu:
+   - Insert Node
+   - Delete Node
+   - Count Nodes
+   - Display List
+   - Display Reverse using Recursion
+   - Exit
+4. Accept the user's choice.
+5. If choice is 1, create a new node and insert it at the end of the list.
+6. If choice is 2, delete the first node and free its memory.
+7. If choice is 3, traverse the list, count the nodes, and display the total.
+8. If choice is 4, traverse and display all nodes.
+9. If choice is 5, use recursion to display the nodes in reverse order.
+10. If choice is 6, display the termination message.
+11. If the choice is invalid, display an error message.
+12. Repeat Steps 3–11 until the user selects Exit.
+13. Stop the program.
+
+5.aim:Implement a data type to represent a polynomial with operators like "+". Create an empty polynomial, insert an entry into a polynomial, add two polynomials, and return the result.
+code:#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+struct node
+{
+int coef;
+int exp;
+struct node *ptr;
+};
+struct node* create_new()
+{
+struct node *newnode;
+newnode = (struct node *)malloc(sizeof(struct node));
+newnode->ptr = NULL;
+return newnode;
+}
+struct node* accept(struct node *head)
+{
+    int coef, exp, ch;
+
+    while (1)
+    {
+        printf("Enter coefficient and exponent: ");
+        scanf("%d%d", &coef, &exp);
+
+        struct node *temp = create_new();
+        temp->coef = coef;
+        temp->exp = exp;
+
+        if (head == NULL)
+        {
+            head = temp;
+        }
+        else
+        {
+            struct node *trav = head;
+
+            while (trav->ptr != NULL)
+                trav = trav->ptr;
+
+            trav->ptr = temp;
+        }
+
+        printf("Continue? (1-Yes / 0-No): ");
+        scanf("%d", &ch);
+
+        if (ch == 0)
+            break;
+    }
+
+    return head;
+}
+
+void display(struct node *head)
+{
+    struct node *trav = head;
+
+    while (trav != NULL)
+    {
+        if (trav->coef >= 0)
+            printf("+%dx^%d ", trav->coef, trav->exp);
+        else
+            printf("%dx^%d ", trav->coef, trav->exp);
+
+        trav = trav->ptr;
+    }
+
+    printf("\n");
+}
+
+int evaluate(struct node *head)
+{
+    int x, res = 0;
+
+    printf("Enter value of x: ");
+    scanf("%d", &x);
+
+    struct node *trav = head;
+
+    while (trav != NULL)
+    {
+        res += trav->coef * pow(x, trav->exp);
+        trav = trav->ptr;
+    }
+
+    return res;
+}
+
+struct node* addition(struct node *h1, struct node *h2)
+{
+    struct node *t1 = h1;
+    struct node *t2 = h2;
+    struct node *h3 = NULL;
+    struct node *t3 = NULL;
+    struct node *newnode;
+
+    while (t1 != NULL && t2 != NULL)
+    {
+        newnode = create_new();
+
+        if (t1->exp > t2->exp)
+        {
+            newnode->coef = t1->coef;
+            newnode->exp = t1->exp;
+            t1 = t1->ptr;
+        }
+        else if (t1->exp < t2->exp)
+        {
+            newnode->coef = t2->coef;
+            newnode->exp = t2->exp;
+            t2 = t2->ptr;
+        }
+        else
+        {
+            newnode->coef = t1->coef + t2->coef;
+            newnode->exp = t1->exp;
+            t1 = t1->ptr;
+            t2 = t2->ptr;
+        }
+
+        if (h3 == NULL)
+        {
+            h3 = newnode;
+            t3 = newnode;
+        }
+        else
+        {
+            t3->ptr = newnode;
+            t3 = newnode;
+        }
+    }
+
+    while (t1 != NULL)
+    {
+        newnode = create_new();
+        newnode->coef = t1->coef;
+        newnode->exp = t1->exp;
+        t3->ptr = newnode;
+        t3 = newnode;
+        t1 = t1->ptr;
+    }
+
+    while (t2 != NULL)
+    {
+        newnode = create_new();
+        newnode->coef = t2->coef;
+        newnode->exp = t2->exp;
+        t3->ptr = newnode;
+        t3 = newnode;
+        t2 = t2->ptr;
+    }
+
+    return h3;
+}
+
+int main()
+{
+    struct node *head1 = NULL;
+    struct node *head2 = NULL;
+    struct node *head3 = NULL;
+    int choice, result;
+
+    while (1)
+    {
+        printf("\n===== POLYNOMIAL MENU =====\n");
+        printf("1. Accept Polynomial 1\n");
+        printf("2. Accept Polynomial 2\n");
+        printf("3. Display Polynomials\n");
+        printf("4. Evaluate Polynomials\n");
+        printf("5. Add Polynomials\n");
+        printf("6. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
+            case 1:
+                head1 = accept(head1);
+                break;
+
+            case 2:
+                head2 = accept(head2);
+                break;
+
+            case 3:
+                printf("Polynomial 1 : ");
+                display(head1);
+                printf("Polynomial 2 : ");
+                display(head2);
+                break;
+
+            case 4:
+                result = evaluate(head1);
+                printf("Result of polynomial 1 = %d\n", result);
+                result = evaluate(head2);
+                printf("Result of polynomial 2= %d\n", result);
+                break;
+
+            case 5:
+                head3 = addition(head1, head2);
+                printf("Resultant Polynomial : ");
+                display(head3);
+                break;
+
+            case 6:
+                exit(0);
+
+            default:
+                printf("Invalid Choice!\n");
+        }
+    }
+
+    return 0;
+}
+. Algorithm: Polynomial Operations Using Linked List
+1. Start the program.
+2. Define a node containing coefficient, exponent, and pointer to the next node.
+3. Initialize three polynomial linked lists: head1, head2, and head3 to NULL.
+4. Display the polynomial operations menu.
+5. Accept the user's choice.
+6. If choice is 1, accept the coefficients and exponents of Polynomial 1 and store them in a linked list.
+7. If choice is 2, accept the coefficients and exponents of Polynomial 2 and store them in a linked list.
+8. If choice is 3, display both polynomials by traversing their linked lists.
+9. If choice is 4, accept the value of x, evaluate each polynomial, and display the results.
+10. If choice is 5, add the two polynomials by comparing their exponents:
+    - If the exponents are equal, add their coefficients.
+    - If the exponents are different, copy the term with the higher exponent.
+    - Append any remaining terms to the resultant polynomial.
+    - Display the resultant polynomial.
+11. If choice is 6, terminate the program.
+12. If the choice is invalid, display an error message.
+13. Repeat Steps 4–12 until the user selects Exit.
+14. Stop the program.
+
+6.aim:Implement a stack using a linked list to perform postfix expression evaluation.
+code:
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+struct Node
+{
+    int data;
+    struct Node *next;
+};
+
+struct Node *top = NULL;
+
+void push(int value)
+{
+    struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
+
+    if (newNode == NULL)
+    {
+        printf("Memory allocation failed!\n");
+        exit(1);
+    }
+
+    newNode->data = value;
+    newNode->next = top;
+    top = newNode;
+}
+
+int pop()
+{
+    struct Node *temp;
+    int value;
+
+    if (top == NULL)
+    {
+        printf("Invalid postfix expression!\n");
+        exit(1);
+    }
+
+    temp = top;
+    value = temp->data;
+    top = top->next;
+    free(temp);
+
+    return value;
+}
+
+int evaluate(char exp[])
+{
+    int i, a, b, result;
+
+    for (i = 0; exp[i] != '\0'; i++)
+    {
+        if (isdigit((unsigned char)exp[i]))
+        {
+            push(exp[i] - '0');
+        }
+        else
+        {
+            b = pop();
+            a = pop();
+
+            switch (exp[i])
+            {
+                case '+':
+                    result = a + b;
+                    break;
+
+                case '-':
+                    result = a - b;
+                    break;
+
+                case '*':
+                    result = a * b;
+                    break;
+
+                case '/':
+                    if (b == 0)
+                    {
+                        printf("Division by zero!\n");
+                        exit(1);
+                    }
+                    result = a / b;
+                    break;
+
+                default:
+                    printf("Invalid operator!\n");
+                    exit(1);
+            }
+
+            push(result);
+        }
+    }
+
+    result = pop();
+
+    if (top != NULL)
+    {
+        printf("Invalid postfix expression!\n");
+        exit(1);
+    }
+
+    return result;
+}
+
+int main()
+{
+    char exp[100];
+
+    printf("Enter postfix expression: ");
+    scanf("%99s", exp);
+
+    printf("Result = %d\n", evaluate(exp));
+
+    return 0;
+}
+ 
+Algorithm: Evaluation of Postfix Expression Using Stack in C
+1. Start.
+2. Define a stack using a linked list and initialize top = NULL.
+3. Accept the postfix expression from the user.
+4. Scan the expression from left to right.
+5. If the character is an operand, push it onto the stack.
+6. If the character is an operator:
+   - Pop two operands from the stack.
+   - Perform the required arithmetic operation.
+   - Push the result onto the stack.
+7. Repeat Steps 4–6 until the end of the expression.
+8. Pop the final result from the stack.
+9. Check whether the stack is empty. If not, display an invalid postfix expression message.
+10. Display the final result.
+11. Stop.
+
+7.aim:To evaluate an infix expression without converting it to postfix.
+code:#include <stdio.h>
+#include <ctype.h>
+#include <stdlib.h>
+
+int values[100];
+char operators[100];
+int vtop = -1, otop = -1;
+
+void pushValue(int x)
+{
+    values[++vtop] = x;
+}
+
+int popValue()
+{
+    return values[vtop--];
+}
+
+void pushOperator(char x)
+{
+    operators[++otop] = x;
+}
+
+char popOperator()
+{
+    return operators[otop--];
+}
+
+int precedence(char op)
+{
+    if (op == '+' || op == '-')
+        return 1;
+
+    if (op == '*' || op == '/' || op == '%')
+        return 2;
+
+    return 0;
+}
+
+void calculate()
+{
+    int a, b, result;
+    char op;
+
+    op = popOperator();
+    b = popValue();
+    a = popValue();
+
+    switch (op)
+    {
+        case '+':
+            result = a + b;
+            break;
+
+        case '-':
+            result = a - b;
+            break;
+
+        case '*':
+            result = a * b;
+            break;
+
+        case '/':
+            if (b == 0)
+            {
+                printf("Division by zero!\n");
+                exit(1);
+            }
+            result = a / b;
+            break;
+
+        case '%':
+            if (b == 0)
+            {
+                printf("Modulo by zero!\n");
+                exit(1);
+            }
+            result = a % b;
+            break;
+
+        default:
+            printf("Invalid operator!\n");
+            exit(1);
+    }
+
+    pushValue(result);
+}
+
+int evaluate(char exp[])
+{
+    int i = 0, number;
+
+    while (exp[i] != '\0')
+    {
+        if (isspace((unsigned char)exp[i]))
+        {
+            i++;
+        }
+        else if (isdigit((unsigned char)exp[i]))
+        {
+            number = 0;
+
+            while (isdigit((unsigned char)exp[i]))
+            {
+                number = number * 10 + exp[i] - '0';
+                i++;
+            }
+
+            pushValue(number);
+        }
+        else if (exp[i] == '(')
+        {
+            pushOperator(exp[i]);
+            i++;
+        }
+        else if (exp[i] == ')')
+        {
+            while (otop >= 0 && operators[otop] != '(')
+                calculate();
+
+            if (otop < 0)
+            {
+                printf("Invalid parentheses!\n");
+                exit(1);
+            }
+
+            popOperator();
+            i++;
+        }
+        else if (exp[i] == '+' || exp[i] == '-' ||
+                 exp[i] == '*' || exp[i] == '/' ||
+                 exp[i] == '%')
+        {
+            while (otop >= 0 &&
+                   operators[otop] != '(' &&
+                   precedence(operators[otop]) >= precedence(exp[i]))
+            {
+                calculate();
+            }
+
+            pushOperator(exp[i]);
+            i++;
+        }
+        else
+        {
+            printf("Invalid character!\n");
+            exit(1);
+        }
+    }
+
+    while (otop >= 0)
+    {
+        if (operators[otop] == '(')
+        {
+            printf("Invalid parentheses!\n");
+            exit(1);
+        }
+
+        calculate();
+    }
+
+    if (vtop != 0)
+    {
+        printf("Invalid expression!\n");
+        exit(1);
+    }
+
+    return popValue();
+}
+
+int main()
+{
+    char exp[100];
+
+    printf("Enter infix expression: ");
+    fgets(exp, sizeof(exp), stdin);
+
+    printf("Result = %d\n", evaluate(exp));
+
+    return 0;
+}
+
+Algorithm: Infix Expression Evaluation Using Stack
+1. Start the program.
+2. Initialize the value stack and operator stack as empty.
+3. Accept an infix expression from the user.
+4. Scan the expression from left to right.
+5. If the character is a digit, form the complete number and push it onto the value stack.
+6. If the character is (, push it onto the operator stack.
+7. If the character is ), perform operations until ( is found, then remove the opening parenthesis.
+8. If the character is an operator (+, -, *, /, %):
+   - Compare its precedence with the operator at the top of the stack.
+   - Perform operations while the top operator has equal or higher precedence.
+   - Push the current operator onto the operator stack.
+9. Repeat Steps 4–8 until the expression ends.
+10. Perform all remaining operations in the operator stack.
+11. Check whether exactly one value remains in the value stack.
+12. Display the final result.
+13. Stop the program.
+
+8 aim:To implement Tower of Hanoi using recursion.
+code:
+#include <stdio.h>
+
+void towerOfHanoi(int n, char source,
+                  char auxiliary, char destination)
+{
+    if (n == 1)
+    {
+        printf("Move disk 1 from %c to %c\n",
+               source, destination);
+        return;
+    }
+
+    towerOfHanoi(n - 1, source, destination, auxiliary);
+
+    printf("Move disk %d from %c to %c\n",
+           n, source, destination);
+
+    towerOfHanoi(n - 1, auxiliary, source, destination);
+}
+
+int main()
+{
+    int n;
+
+    printf("Enter number of disks: ");
+    scanf("%d", &n);
+
+    if (n <= 0)
+    {
+        printf("Enter a positive number of disks.\n");
+        return 1;
+    }
+
+    towerOfHanoi(n, 'A', 'B', 'C');
+
+    return 0;
+}
+Algorithm: Tower of Hanoi Using Recursion
+1. Start the program.
+2. Accept the number of disks n from the user.
+3. If n <= 0, display an error message and stop.
+4. Call towerOfHanoi(n, A, B, C), where A is the source, B is the auxiliary, and C is the destination.
+5. If n == 1, move the disk from the source rod to the destination rod and return.
+6. Move n-1 disks from the source rod to the auxiliary rod using the destination rod.
+7. Move the largest disk from the source rod to the destination rod.
+8. Move the n-1 disks from the auxiliary rod to the destination rod using the source rod.
+9. Repeat the recursive steps until all disks are moved.
+10. Stop the program.
+
+9 aim:9. To simulate a deque with insertion and deletion from both ends.
+code:
+#include <stdio.h>
+#define MAX 5
+
+int deque[MAX];
+int front = -1, rear = -1;
+
+void insertFront(int x)
+{
+    if ((front == 0 && rear == MAX - 1) ||
+        (front == rear + 1))
+    {
+        printf("Deque is full!\n");
+        return;
+    }
+
+    if (front == -1)
+        front = rear = 0;
+    else if (front == 0)
+        front = MAX - 1;
+    else
+        front--;
+
+    deque[front] = x;
+}
+
+void insertRear(int x)
+{
+    if ((front == 0 && rear == MAX - 1) ||
+        (front == rear + 1))
+    {
+        printf("Deque is full!\n");
+        return;
+    }
+
+    if (front == -1)
+        front = rear = 0;
+    else if (rear == MAX - 1)
+        rear = 0;
+    else
+        rear++;
+
+    deque[rear] = x;
+}
+
+void deleteFront()
+{
+    if (front == -1)
+    {
+        printf("Deque is empty!\n");
+        return;
+    }
+
+    printf("Deleted: %d\n", deque[front]);
+
+    if (front == rear)
+        front = rear = -1;
+    else if (front == MAX - 1)
+        front = 0;
+    else
+        front++;
+}
+
+void deleteRear()
+{
+    if (front == -1)
+    {
+        printf("Deque is empty!\n");
+        return;
+    }
+
+    printf("Deleted: %d\n", deque[rear]);
+
+    if (front == rear)
+        front = rear = -1;
+    else if (rear == 0)
+        rear = MAX - 1;
+    else
+        rear--;
+}
+
+void display()
+{
+    int i;
+
+    if (front == -1)
+    {
+        printf("Deque is empty!\n");
+        return;
+    }
+
+    printf("Deque: ");
+    i = front;
+
+    while (1)
+    {
+        printf("%d ", deque[i]);
+
+        if (i == rear)
+            break;
+
+        i = (i + 1) % MAX;
+    }
+
+    printf("\n");
+}
+
+int main()
+{
+    int choice, x;
+
+    do
+    {
+        printf("\n1. Insert Front");
+        printf("\n2. Insert Rear");
+        printf("\n3. Delete Front");
+        printf("\n4. Delete Rear");
+        printf("\n5. Display");
+        printf("\n6. Exit");
+        printf("\nEnter choice: ");
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
+            case 1:
+                printf("Enter element: ");
+                scanf("%d", &x);
+                insertFront(x);
+                break;
+
+            case 2:
+                printf("Enter element: ");
+                scanf("%d", &x);
+                insertRear(x);
+                break;
+
+            case 3:
+                deleteFront();
+                break;
+
+            case 4:
+                deleteRear();
+                break;
+
+            case 5:
+                display();
+                break;
+
+            case 6:
+                printf("Exiting...\n");
+                break;
+
+            default:
+                printf("Invalid choice!\n");
+        }
+
+    } while (choice != 6);
+
+    return 0;
+}
+Algorithm: Double-Ended Queue (Deque) Using Array
+1. Start the program.
+2. Initialize front = -1 and rear = -1.
+3. Display the menu: Insert Front, Insert Rear, Delete Front, Delete Rear, Display, and Exit.
+4. Accept the user's choice.
+5. If choice is 1, insert an element at the front after checking whether the deque is full.
+6. If choice is 2, insert an element at the rear after checking whether the deque is full.
+7. If choice is 3, delete an element from the front after checking whether the deque is empty.
+8. If choice is 4, delete an element from the rear after checking whether the deque is empty.
+9. If choice is 5, display all elements from front to rear.
+10. If choice is 6, terminate the program.
+11. If the choice is invalid, display an error message.
+12. Repeat Steps 3–11 until the user selects Exit.
+13. Stop the program.
+
+10.aim:-To construct a Binary Search Tree (BST) and perform insertion, longest path, minimum value, mirror, and search operations.
+code:#include <stdio.h>
+#include <stdlib.h>
+
+struct Node
+{
+    int data;
+    struct Node *left, *right;
+};
+
+struct Node* createNode(int value)
+{
+    struct Node *newNode;
+
+    newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = value;
+    newNode->left = NULL;
+    newNode->right = NULL;
+
+    return newNode;
+}
+
+struct Node* insert(struct Node *root, int value)
+{
+    if (root == NULL)
+        return createNode(value);
+
+    if (value < root->data)
+        root->left = insert(root->left, value);
+    else if (value > root->data)
+        root->right = insert(root->right, value);
+
+    return root;
+}
+
+int height(struct Node *root)
+{
+    int left, right;
+
+    if (root == NULL)
+        return 0;
+
+    left = height(root->left);
+    right = height(root->right);
+
+    if (left > right)
+        return left + 1;
+    else
+        return right + 1;
+}
+
+int findMin(struct Node *root)
+{
+    if (root == NULL)
+        return -1;
+
+    while (root->left != NULL)
+        root = root->left;
+
+    return root->data;
+}
+
+struct Node* search(struct Node *root, int key)
+{
+    if (root == NULL || root->data == key)
+        return root;
+
+    if (key < root->data)
+        return search(root->left, key);
+    else
+        return search(root->right, key);
+}
+
+void swapTree(struct Node *root)
+{
+    struct Node *temp;
+
+    if (root == NULL)
+        return;
+
+    temp = root->left;
+    root->left = root->right;
+    root->right = temp;
+
+    swapTree(root->left);
+    swapTree(root->right);
+}
+
+void inorder(struct Node *root)
+{
+    if (root != NULL)
+    {
+        inorder(root->left);
+        printf("%d ", root->data);
+        inorder(root->right);
+    }
+}
+
+int main()
+{
+    struct Node *root = NULL;
+    struct Node *found;
+    int n, i, value, key;
+
+    printf("Enter number of nodes: ");
+    scanf("%d", &n);
+
+    if (n <= 0)
+    {
+        printf("Number of nodes must be positive.\n");
+        return 1;
+    }
+
+    printf("Enter BST values:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        scanf("%d", &value);
+        root = insert(root, value);
+    }
+
+    printf("BST: ");
+    inorder(root);
+
+    printf("\nEnter value to insert: ");
+    scanf("%d", &value);
+    root = insert(root, value);
+
+    printf("BST after insertion: ");
+    inorder(root);
+
+    printf("\nLongest path: %d nodes", height(root));
+    printf("\nMinimum value: %d", findMin(root));
+
+    printf("\nEnter value to search: ");
+    scanf("%d", &key);
+
+    found = search(root, key);
+
+    if (found != NULL)
+        printf("Value found in BST.");
+    else
+        printf("Value not found in BST.");
+
+    swapTree(root);
+
+    printf("\nBST after swapping: ");
+    inorder(root);
+
+    printf("\n");
+
+    return 0;
+}
+Algorithm: Binary Search Tree (BST) Operations
+1. Start the program.
+2. Create an empty Binary Search Tree with root = NULL.
+3. Accept the number of nodes n from the user.
+4. Read n values and insert each value into the BST according to BST properties.
+5. Display the BST using inorder traversal.
+6. Accept a new value and insert it into the BST.
+7. Display the BST after insertion.
+8. Find the longest path by calculating the height of the BST and display it.
+9. Find and display the minimum value by traversing to the leftmost node.
+10. Accept a search value and search for it in the BST.
+11. Display whether the value is found or not found.
+12. Swap the left and right child pointers of every node recursively.
+13. Display the tree after swapping using inorder traversal.
+14. Stop the program.
