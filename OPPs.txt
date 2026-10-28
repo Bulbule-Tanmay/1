@@ -1,0 +1,928 @@
+1(a) Display a number in Decimal, Octal and Hexadecimal
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+
+    cout << "Enter a number: ";
+    cin >> n;
+
+    cout << "Decimal: " << dec << n << endl;
+    cout << "Octal: " << oct << n << endl;
+    cout << "Hexadecimal: " << hex << n << endl;
+
+    return 0;
+}
+
+
+1(b) Store and display student information
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string college, department, name;
+    float marks[5], total = 0, percentage, cgpa;
+
+    cout << "Enter college name: ";
+    getline(cin, college);
+
+    cout << "Enter department: ";
+    getline(cin, department);
+
+    cout << "Enter student name: ";
+    getline(cin, name);
+
+    for (int i = 0; i < 5; i++) {
+        cout << "Enter marks for subject " << i + 1 << ": ";
+        cin >> marks[i];
+        total += marks[i];
+    }
+
+    percentage = total / 5;
+    cgpa = percentage / 9.5;
+
+    cout << "\nStudent Information\n";
+    cout << "College: " << college << endl;
+    cout << "Department: " << department << endl;
+    cout << "Name: " << name << endl;
+    cout << "Total Marks: " << total << "/500" << endl;
+    cout << "Percentage: " << percentage << "%" << endl;
+    cout << "Approx. CGPA: " << cgpa << endl;
+
+    return 0;
+}
+
+
+2(a) Find the Least Common Multiple (LCM)
+
+
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
+int gcd(int a, int b) {
+    while (b != 0) {
+        int r = a % b;
+        a = b;
+        b = r;
+    }
+    return abs(a);
+}
+
+int main() {
+    int a, b;
+
+    cout << "Enter two numbers: ";
+    cin >> a >> b;
+
+    if (a == 0 || b == 0)
+        cout << "LCM = 0" << endl;
+    else
+        cout << "LCM = " << abs((a / gcd(a, b)) * b) << endl;
+
+    return 0;
+}
+
+
+2(b) Shopping list using a class
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Item {
+public:
+    int code;
+    string name;
+    float price;
+
+    Item(int c, string n, float p) {
+        code = c;
+        name = n;
+        price = p;
+    }
+};
+
+class ShoppingList {
+    vector<Item> items;
+
+public:
+    void addItem() {
+        int c;
+        string n;
+        float p;
+
+        cout << "Enter code, name and price: ";
+        cin >> c >> n >> p;
+
+        items.emplace_back(c, n, p);
+    }
+
+    void deleteItem() {
+        int c;
+        cout << "Enter code to delete: ";
+        cin >> c;
+
+        for (int i = 0; i < (int)items.size(); i++) {
+            if (items[i].code == c) {
+                items.erase(items.begin() + i);
+                cout << "Item deleted\n";
+                return;
+            }
+        }
+
+        cout << "Item not found\n";
+    }
+
+    void display() {
+        float total = 0;
+
+        cout << "\nCode\tName\tPrice\n";
+
+        for (auto item : items) {
+            cout << item.code << "\t"
+                 << item.name << "\t"
+                 << item.price << endl;
+
+            total += item.price;
+        }
+
+        cout << "Total Order Value = " << total << endl;
+    }
+};
+
+int main() {
+    ShoppingList s;
+    int choice;
+
+    do {
+        cout << "\n1.Add Item\n2.Delete Item"
+             << "\n3.Display List\n0.Exit\n";
+        cout << "Enter choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1: s.addItem(); break;
+            case 2: s.deleteItem(); break;
+            case 3: s.display(); break;
+        }
+    } while (choice != 0);
+
+    return 0;
+}
+
+
+3(a) Find the area of a rectangle, triangle and surface area of a sphere using function overloading
+
+
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+double area(double l, double b) {
+    return l * b;
+}
+
+double area(double a, double b, double c) {
+    double s = (a + b + c) / 2;
+    return sqrt(s * (s-a) * (s-b) * (s-c));
+}
+
+double area(double r) {
+    return 4 * 3.14159 * r * r;
+}
+
+int main() {
+    double l, b, a, c, r;
+
+    cout << "Enter rectangle length and breadth: ";
+    cin >> l >> b;
+    cout << "Rectangle area = " << area(l, b) << endl;
+
+    cout << "Enter three sides of triangle: ";
+    cin >> a >> b >> c;
+    cout << "Triangle area = " << area(a, b, c) << endl;
+
+    cout << "Enter sphere radius: ";
+    cin >> r;
+    cout << "Sphere surface area = " << area(r) << endl;
+
+    return 0;
+}
+
+
+3(b) Find maximum of two numbers using a friend function
+
+
+#include <iostream>
+using namespace std;
+
+class Number {
+    int a, b;
+
+public:
+    void input() {
+        cout << "Enter two numbers: ";
+        cin >> a >> b;
+    }
+
+    friend int maximum(Number n);
+};
+
+int maximum(Number n) {
+    if (n.a > n.b)
+        return n.a;
+    else
+        return n.b;
+}
+
+int main() {
+    Number n;
+    n.input();
+
+    cout << "Maximum = " << maximum(n) << endl;
+
+    return 0;
+}
+
+
+4(a) Parameterized constructor
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Student {
+    int roll;
+    string name;
+
+public:
+    Student(int r, string n) {
+        roll = r;
+        name = n;
+    }
+
+    void display() {
+        cout << "Roll Number: " << roll << endl;
+        cout << "Name: " << name << endl;
+    }
+};
+
+int main() {
+    int r;
+    string n;
+
+    cout << "Enter roll number: ";
+    cin >> r;
+
+    cout << "Enter name: ";
+    cin >> n;
+
+    Student s(r, n);
+    s.display();
+
+    return 0;
+}
+
+
+4(b) Copy constructor
+
+
+#include <iostream>
+using namespace std;
+
+class Sample {
+    int value;
+
+public:
+    Sample(int v) {
+        value = v;
+    }
+
+    Sample(const Sample &s) {
+        value = s.value;
+        cout << "Copy constructor called" << endl;
+    }
+
+    void display() {
+        cout << "Value = " << value << endl;
+    }
+};
+
+int main() {
+    Sample s1(100);
+    Sample s2 = s1;
+
+    cout << "Original object: ";
+    s1.display();
+
+    cout << "Copied object: ";
+    s2.display();
+
+    return 0;
+}
+
+
+4(c) Constructor calling order in inheritance
+
+
+#include <iostream>
+using namespace std;
+
+class Alpha {
+public:
+    Alpha() {
+        cout << "Alpha constructor" << endl;
+    }
+};
+
+class Beta {
+public:
+    Beta() {
+        cout << "Beta constructor" << endl;
+    }
+};
+
+class Gamma : public Alpha, public Beta {
+public:
+    Gamma() {
+        cout << "Gamma constructor" << endl;
+    }
+};
+
+int main() {
+    Gamma g;
+    return 0;
+}
+
+
+5(a) Multiple inheritance — Person, Student, Teacher and GradTeachingFellow
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Person {
+protected:
+    string name;
+    string birthDate;
+    int age;
+
+public:
+    Person(string n, string d, int a) {
+        name = n;
+        birthDate = d;
+        age = a;
+    }
+
+    void getInfo() {
+        cout << "Name: " << name << endl;
+        cout << "Birth Date: " << birthDate << endl;
+        cout << "Age: " << age << endl;
+    }
+};
+
+class Student : virtual public Person {
+public:
+    Student(string n, string d, int a) : Person(n, d, a) {}
+
+    void getDepartment() {
+        cout << "Department: Computer Engineering" << endl;
+    }
+};
+
+class Teacher : virtual public Person {
+public:
+    Teacher(string n, string d, int a) : Person(n, d, a) {}
+
+    void getRank() {
+        cout << "Rank: Assistant Professor" << endl;
+    }
+
+    void getCourseInfo() {
+        cout << "Course: OOP" << endl;
+    }
+};
+
+class GradTeachingFellow : public Student, public Teacher {
+public:
+    GradTeachingFellow(string n, string d, int a)
+        : Person(n, d, a),
+          Student(n, d, a),
+          Teacher(n, d, a) {}
+
+    void getSupervisor() {
+        cout << "Supervisor: Department Faculty" << endl;
+    }
+};
+
+int main() {
+    GradTeachingFellow g("Amit", "12-05-2005", 21);
+
+    g.getInfo();
+    g.getDepartment();
+    g.getRank();
+    g.getCourseInfo();
+    g.getSupervisor();
+
+    return 0;
+}
+
+
+5(b) Virtual function
+
+
+#include <iostream>
+using namespace std;
+
+class Animal {
+public:
+    virtual void sound() {
+        cout << "Animal makes a sound" << endl;
+    }
+};
+
+class Dog : public Animal {
+public:
+    void sound() override {
+        cout << "Dog barks" << endl;
+    }
+};
+
+int main() {
+    Animal a;
+    Dog d;
+
+    Animal *ptr;
+
+    ptr = &a;
+    ptr->sound();
+
+    ptr = &d;
+    ptr->sound();
+
+    return 0;
+}
+
+
+6(a) Polymorphism using a virtual function
+
+
+#include <iostream>
+using namespace std;
+
+class Shape {
+public:
+    virtual double area() {
+        return 0;
+    }
+};
+
+class Rectangle : public Shape {
+    double l, b;
+
+public:
+    Rectangle(double x, double y) {
+        l = x;
+        b = y;
+    }
+
+    double area() override {
+        return l * b;
+    }
+};
+
+class Circle : public Shape {
+    double r;
+
+public:
+    Circle(double x) {
+        r = x;
+    }
+
+    double area() override {
+        return 3.14159 * r * r;
+    }
+};
+
+int main() {
+    Rectangle rect(5, 4);
+    Circle circle(3);
+
+    Shape *ptr;
+
+    ptr = &rect;
+    cout << "Rectangle area = " << ptr->area() << endl;
+
+    ptr = &circle;
+    cout << "Circle area = " << ptr->area() << endl;
+
+    return 0;
+}
+
+
+6(b) Digital library using runtime polymorphism
+
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Media {
+protected:
+    int code;
+    string title;
+    bool issued;
+
+public:
+    Media(int c, string t) {
+        code = c;
+        title = t;
+        issued = false;
+    }
+
+    virtual void display() = 0;
+
+    void issue() {
+        issued = true;
+    }
+
+    void deposit() {
+        issued = false;
+    }
+
+    int getCode() {
+        return code;
+    }
+
+    virtual ~Media() {}
+};
+
+class Book : public Media {
+public:
+    Book(int c, string t) : Media(c, t) {}
+
+    void display() override {
+        cout << "Book: " << code << " " << title;
+        cout << (issued ? " Issued" : " Available") << endl;
+    }
+};
+
+class Tape : public Media {
+public:
+    Tape(int c, string t) : Media(c, t) {}
+
+    void display() override {
+        cout << "Tape: " << code << " " << title;
+        cout << (issued ? " Issued" : " Available") << endl;
+    }
+};
+
+int main() {
+    vector<Media*> library;
+
+    library.push_back(new Book(1, "CPP_Basics"));
+    library.push_back(new Tape(2, "OOP_Lecture"));
+
+    int choice, code;
+
+    do {
+        cout << "\n1.Display\n2.Issue\n3.Deposit\n0.Exit\n";
+        cout << "Enter choice: ";
+        cin >> choice;
+
+        if (choice == 1) {
+            for (auto p : library)
+                p->display();
+        }
+        else if (choice == 2 || choice == 3) {
+            cout << "Enter item code: ";
+            cin >> code;
+
+            bool found = false;
+
+            for (auto p : library) {
+                if (p->getCode() == code) {
+                    if (choice == 2)
+                        p->issue();
+                    else
+                        p->deposit();
+
+                    cout << "Operation completed" << endl;
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found)
+                cout << "Item not found" << endl;
+        }
+
+    } while (choice != 0);
+
+    for (auto p : library)
+        delete p;
+
+    return 0;
+}
+
+
+ex 7:Dynamic memory allocation and deallocation using new and delete
+
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+
+    cout << "Enter number of elements: ";
+    cin >> n;
+
+    if (n <= 0) {
+        cout << "Invalid size" << endl;
+        return 0;
+    }
+
+    int *arr = new int[n];
+
+    for (int i = 0; i < n; i++) {
+        cout << "Enter element: ";
+        cin >> arr[i];
+    }
+
+    cout << "Array elements: ";
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+
+    cout << endl;
+
+    delete[] arr;
+
+    cout << "Memory deallocated" << endl;
+
+    return 0;
+}
+
+
+8(a) File handling using ifstream and ofstream
+
+
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+int main() {
+    string text;
+
+    ofstream fout("sample.txt");
+
+    cout << "Enter text: ";
+    getline(cin, text);
+
+    fout << text << endl;
+    fout.close();
+
+    ifstream fin("sample.txt");
+
+    cout << "File contents:" << endl;
+
+    while (getline(fin, text)) {
+        cout << text << endl;
+    }
+
+    fin.close();
+
+    return 0;
+}
+
+
+8(b) Binary file read/write using a structure
+
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+struct Student {
+    int roll;
+    char name[30];
+    float marks;
+};
+
+int main() {
+    Student s;
+
+    cout << "Enter roll number, name and marks: ";
+    cin >> s.roll >> s.name >> s.marks;
+
+    ofstream fout("student.dat", ios::binary);
+
+    fout.write((char*)&s, sizeof(s));
+    fout.close();
+
+    Student s1;
+
+    ifstream fin("student.dat", ios::binary);
+
+    fin.read((char*)&s1, sizeof(s1));
+    fin.close();
+
+    cout << "\nStudent Details" << endl;
+    cout << "Roll Number: " << s1.roll << endl;
+    cout << "Name: " << s1.name << endl;
+    cout << "Marks: " << s1.marks << endl;
+
+    return 0;
+}
+
+
+8(c) Function template to sort an array
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+template <class T>
+void sortArray(T a[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (a[j] > a[j + 1]) {
+                T temp = a[j];
+                a[j] = a[j + 1];
+                a[j + 1] = temp;
+            }
+        }
+    }
+}
+
+template <class T>
+void display(T a[], int n) {
+    for (int i = 0; i < n; i++)
+        cout << a[i] << " ";
+
+    cout << endl;
+}
+
+int main() {
+    int a[] = {5, 2, 8, 1, 3};
+    float b[] = {3.2, 1.5, 4.7, 2.1};
+    string c[] = {"Pear", "Apple", "Mango"};
+
+    sortArray(a, 5);
+    display(a, 5);
+
+    sortArray(b, 4);
+    display(b, 4);
+
+    sortArray(c, 3);
+    display(c, 3);
+
+    return 0;
+}
+
+
+9(a) Bubble sort using a template function
+
+
+#include <iostream>
+using namespace std;
+
+template <class T>
+void bubbleSort(T arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                T temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    int arr[] = {64, 25, 12, 22, 11};
+    int n = 5;
+
+    bubbleSort(arr, n);
+
+    cout << "Sorted array: ";
+
+    for (int i = 0; i < n; i++)
+        cout << arr[i] << " ";
+
+    cout << endl;
+
+    return 0;
+}
+
+
+9(b) Function template to sort built-in and user-defined types
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+template <class T>
+void sortItems(T arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                T temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    string names[] = {"Ravi", "Amit", "Kiran", "Neha"};
+    int n = 4;
+
+    sortItems(names, n);
+
+    cout << "Sorted names:" << endl;
+
+    for (int i = 0; i < n; i++)
+        cout << names[i] << endl;
+
+    return 0;
+}
+
+
+10(a) Exception handling using try, throw and catch
+
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int a, b;
+
+    cout << "Enter two numbers: ";
+    cin >> a >> b;
+
+    try {
+        if (b == 0)
+            throw b;
+
+        cout << "Division = " << (float)a / b << endl;
+    }
+    catch (int x) {
+        cout << "Exception: Division by zero" << endl;
+    }
+
+    return 0;
+}
+
+
+10(b) Exception handling with multiple catch statements
+
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int choice;
+
+    cout << "Enter choice (1, 2 or 3): ";
+    cin >> choice;
+
+    try {
+        if (choice == 1)
+            throw 100;
+        else if (choice == 2)
+            throw 'A';
+        else if (choice == 3)
+            throw 3.14;
+        else
+            throw "Invalid choice";
+    }
+    catch (int x) {
+        cout << "Integer exception: " << x << endl;
+    }
+    catch (char x) {
+        cout << "Character exception: " << x << endl;
+    }
+    catch (double x) {
+        cout << "Double exception: " << x << endl;
+    }
+    catch (const char *x) {
+        cout << "String exception: " << x << endl;
+    }
+
+    return 0;
+}
