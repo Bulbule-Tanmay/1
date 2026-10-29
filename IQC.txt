@@ -1,0 +1,258 @@
+IQC LAB MANUAL - EXTRACTED CODE
+Source: SY IQC Lab Manual.docx
+Course: Introduction to Quantum Computing / Quantum Computing Lab
+
+====================================================================
+EXP 1 - INSTALLATION OF QISKIT
+====================================================================
+
+# Create a Python virtual environment
+python -m venv .venv
+
+# Activate the environment - use the command for your shell
+# PowerShell:
+.venv\Scripts\Activate.ps1
+
+# Git Bash:
+source .venv/scripts/activate
+
+# Windows Command Prompt:
+.venv\Scripts\activate
+
+# Install Qiskit and the Qiskit Runtime client
+pip install qiskit
+pip install qiskit-ibm-runtime
+
+# Optional visualization support
+pip install qiskit[visualization]
+
+# Install Jupyter Notebook
+pip install jupyter
+
+# Open a notebook
+jupyter notebook <path/to/notebook.ipynb>
+
+====================================================================
+EXP 2(a) - STATE VECTORS
+====================================================================
+
+from qiskit.quantum_info import Statevector
+from numpy import sqrt
+
+u = Statevector([1 / sqrt(2), 1 / sqrt(2)])
+v = Statevector([(1 + 2.0j) / 3, -2 / 3])
+w = Statevector([1 / 3, 2 / 3])
+
+print("State vectors u, v, and w have been defined.")
+
+display(u.draw("latex"))
+display(v.draw("text"))
+
+====================================================================
+EXP 2(b) - SAMPLE COUNTS AND HISTOGRAM
+====================================================================
+
+from qiskit.visualization import plot_histogram
+statistics = v.sample_counts(1000)
+display(statistics)
+plot_histogram(statistics)
+
+Note: This block uses variable v defined in Exp 2(a).
+
+====================================================================
+EXP 3 - IDENTITY MATRIX FOR 1, 2, AND 3 QUBITS
+====================================================================
+
+from qiskit import QuantumCircuit
+from qiskit.quantum_info import Operator
+
+# Function to create identity matrix for n qubits
+def identity_matrix(n_qubits):
+    # Create a quantum circuit with n qubits
+    qc = QuantumCircuit(n_qubits)
+
+    # Apply the identity gate to all qubits using the `id()` method
+    for i in range(n_qubits):
+        qc.id(i)
+
+    # Convert the quantum circuit to an operator (matrix)
+    identity_matrix_nq = Operator(qc).data
+
+    return identity_matrix_nq
+
+# Example: Identity matrix for 1, 2, and 3 qubits
+identity_matrix_1q = identity_matrix(1)
+identity_matrix_2q = identity_matrix(2)
+identity_matrix_3q = identity_matrix(3)
+
+print("Identity matrix for 1 qubit:")
+print(identity_matrix_1q)
+
+print("\nIdentity matrix for 2 qubits:")
+print(identity_matrix_2q)
+
+print("\nIdentity matrix for 3 qubits:")
+print(identity_matrix_3q)
+
+====================================================================
+EXP 4(a) - PAULI-X GATE
+====================================================================
+
+from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
+from numpy import pi
+
+qc = QuantumCircuit(1,1)
+qc.x(0)
+qc.measure(0, 0)
+
+print("Circuit diagram:")
+print(qc.draw())
+
+====================================================================
+EXP 4(b) - PAULI-Y GATE
+====================================================================
+
+from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
+from numpy import pi
+
+qc = QuantumCircuit(1,1)
+qc.y(0)
+qc.measure(0, 0)
+
+print("Circuit diagram:")
+print(qc.draw())
+
+====================================================================
+EXP 4(c) - PAULI-Z GATE (AS PRINTED IN SOURCE)
+====================================================================
+
+from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
+from numpy import pi
+
+qc = QuantumCircuit(1,1)
+qc.y(0)
+qc.measure(0, 0)
+
+print("Circuit diagram:")
+print(qc.draw())
+
+====================================================================
+EXP 5 - HADAMARD GATE
+====================================================================
+
+from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
+from numpy import pi
+
+qc = QuantumCircuit(1,1)
+qc.h(0)
+qc.measure(0, 0)
+
+print("Circuit diagram:")
+print(qc.draw())
+
+====================================================================
+EXP 6(a) - CNOT GATE (CX)
+====================================================================
+
+from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
+from numpy import pi
+
+qc = QuantumCircuit(2, 2)
+qc.cx(0, 1)
+qc.measure([0, 1], [0, 1])
+
+print("Circuit diagram:")
+print(qc.draw())
+
+====================================================================
+EXP 6(b) - SWAP GATE
+====================================================================
+
+from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
+from numpy import pi
+
+qc = QuantumCircuit(2, 2)
+qc.swap(0, 1)
+qc.measure([0, 1], [0, 1])
+
+print("Circuit diagram:")
+print(qc.draw())
+
+====================================================================
+EXP 7(a) - TOFFOLI GATE (CCX)
+====================================================================
+
+from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
+from numpy import pi
+
+qc = QuantumCircuit(3, 3)
+qc.ccx(0, 1, 2)
+qc.measure([0, 1, 2], [0, 1, 2])
+
+print("Circuit diagram:")
+print(qc.draw())
+
+====================================================================
+EXP 8(a) - HADAMARD GATE FOLLOWED BY CNOT (CX)
+====================================================================
+
+from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
+from numpy import pi
+
+qc = QuantumCircuit(2, 2)
+qc.h(0)
+qc.cx(0,1)
+
+qc.measure([0, 1], [0,1])
+
+print("Circuit diagram:")
+print(qc.draw())
+
+====================================================================
+EXP 8(b) - CNOT (CX) FOLLOWED BY HADAMARD GATE
+====================================================================
+
+from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
+from numpy import pi
+
+qc = QuantumCircuit(2, 2)
+
+qc.cx(0,1)
+qc.h(0)
+
+qc.measure([0, 1], [0,1])
+
+print("Circuit diagram:")
+print(qc.draw())
+
+====================================================================
+EXP 9(a) - TWO PAULI-X GATES ON CCX GATE
+====================================================================
+
+from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
+from numpy import pi
+
+qc = QuantumCircuit(3, 3)
+
+qc.x(0)
+qc.x(1)
+qc.ccx(0, 1, 2)
+
+qc.measure([0, 1, 2], [0, 1, 2])
+
+print("Circuit diagram:")
+print(qc.draw())
+
+====================================================================
+SOURCE NOTES / ITEMS NOT PRESENT IN THE MANUAL
+====================================================================
+
+1. Exp 4(c) is titled "Pauli-Z Gate" in the manual, but the extracted code calls qc.y(0). It is preserved exactly as printed in the source; verify this before using it as a Pauli-Z experiment.
+
+2. Exp 6 theory discusses more two-qubit gates, including CZ, but the manual provides program code only for CNOT and SWAP.
+
+3. Exp 7 theory discusses the Fredkin (CSWAP) gate, but the manual provides program code only for the Toffoli (CCX) gate.
+
+4. Exp 10 ("Case Study: IBM Cloud related quantum computing") appears in the experiment list, but no Exp 10 program/code is included in the uploaded 35-page manual. The detailed content ends with Exp 9.
+
+5. The Exp 1 activation commands are alternatives for different shells; choose the one matching your terminal. Exp 2(b) depends on variable v created in Exp 2(a).
