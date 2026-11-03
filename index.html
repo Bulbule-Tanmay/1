@@ -2281,6 +2281,27 @@
             opacity: 0.3;
             line-height: 1;
         }
+        /* ============ BRAND PHOTOS ============ */
+        .photo-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            z-index: 0;
+        }
+
+        .product-image-bg { position: relative; }
+
+        .collection-card-bg img.photo-fill {
+            transition: transform 0.8s ease;
+        }
+
+        .collection-card:hover .collection-card-bg img.photo-fill {
+            transform: scale(1.06);
+        }
     </style>
 </head>
 <body>
@@ -2364,7 +2385,7 @@
 
             <div class="hero-visual">
                 <div class="hero-image-main">
-                    <div class="hero-jewellery-icon">✦</div>
+                    <img class="photo-fill" src="images/orrnams-lily-necklace-model.jpg" alt="Hand-painted lily pendant necklace with pink fabric beads and matching earring by ORRNAMS" style="object-position: center 55%;">
                     <div class="hero-image-text">
                         <h4>New Arrivals</h4>
                         <p>Handcrafted Collection</p>
@@ -2425,7 +2446,7 @@
         <div class="collections-grid stagger-children">
             <div class="collection-card reveal" onclick="scrollToSection('shop')">
                 <div class="collection-card-bg">
-                    <span class="collection-icon">✦</span>
+                    <img class="photo-fill" src="images/orrnams-rose-plumeria-earrings.jpg" alt="Handmade clay rose and plumeria earrings" loading="lazy">
                 </div>
                 <div class="collection-overlay"></div>
                 <div class="collection-content">
@@ -2439,7 +2460,7 @@
 
             <div class="collection-card reveal" onclick="scrollToSection('shop')">
                 <div class="collection-card-bg">
-                    <span class="collection-icon">◇</span>
+                    <img class="photo-fill" src="images/orrnams-lotus-pearl-necklace.jpg" alt="Blue lotus pendant necklace with layered pearl chains" loading="lazy">
                 </div>
                 <div class="collection-overlay"></div>
                 <div class="collection-content">
@@ -2453,7 +2474,7 @@
 
             <div class="collection-card reveal" onclick="scrollToSection('rose')">
                 <div class="collection-card-bg">
-                    <span class="collection-icon">❀</span>
+                    <img class="photo-fill" src="images/orrnams-lily-necklace-set.jpg" alt="Hand-painted floral necklace and earrings set on jute" loading="lazy">
                 </div>
                 <div class="collection-overlay"></div>
                 <div class="collection-content">
@@ -2509,7 +2530,7 @@
             <div class="product-card reveal" onclick="openModal(this)">
                 <div class="product-image">
                     <div class="product-image-bg">
-                        <span class="product-icon">◇</span>
+                        <img class="photo-fill" src="images/orrnams-blue-lotus-set.jpg" alt="Pearl necklace with blue lotus motifs" loading="lazy">
                     </div>
                     <span class="product-badge">New</span>
                     <div class="product-actions">
@@ -2530,7 +2551,7 @@
             <div class="product-card reveal" onclick="openModal(this)">
                 <div class="product-image">
                     <div class="product-image-bg">
-                        <span class="product-icon">❀</span>
+                        <img class="photo-fill" src="images/orrnams-rose-earrings.jpg" alt="Handmade pink rose stud earrings" loading="lazy">
                     </div>
                     <div class="product-actions">
                         <button class="product-action-btn" onclick="event.stopPropagation(); enquireProduct('Rose Stud Earrings')">♡</button>
@@ -2591,7 +2612,7 @@
             <div class="product-card reveal" onclick="openModal(this)">
                 <div class="product-image">
                     <div class="product-image-bg">
-                        <span class="product-icon">✧</span>
+                        <img class="photo-fill" src="images/orrnams-lotus-pearl-necklace.jpg" alt="Lotus pendant necklace with pearl chains" loading="lazy">
                     </div>
                     <div class="product-actions">
                         <button class="product-action-btn" onclick="event.stopPropagation(); enquireProduct('Pendant Chain Necklace')">♡</button>
@@ -2631,7 +2652,7 @@
             <div class="product-card reveal" onclick="openModal(this)">
                 <div class="product-image">
                     <div class="product-image-bg">
-                        <span class="product-icon">❋</span>
+                        <img class="photo-fill" src="images/orrnams-lily-necklace-set.jpg" alt="Layered beaded necklace set with painted pendant" loading="lazy">
                     </div>
                     <span class="product-badge">New</span>
                     <div class="product-actions">
@@ -2663,13 +2684,13 @@
         <div class="rose-content">
             <div class="rose-gallery reveal-left">
                 <div class="rose-gallery-item">
-                    <div class="rose-img-placeholder">❀</div>
+                    <img class="photo-fill" src="images/orrnams-lily-necklace-set.jpg" alt="Hand-painted lily necklace and earrings set" loading="lazy">
                 </div>
                 <div class="rose-gallery-item">
-                    <div class="rose-img-placeholder">✿</div>
+                    <img class="photo-fill" src="images/orrnams-plumeria-earrings.jpg" alt="Handmade plumeria and rose earrings" loading="lazy">
                 </div>
                 <div class="rose-gallery-item">
-                    <div class="rose-img-placeholder">❁</div>
+                    <img class="photo-fill" src="images/orrnams-sunflower-earrings.jpg" alt="Handmade yellow sunflower drop earrings" loading="lazy">
                 </div>
             </div>
 
@@ -2716,7 +2737,7 @@
         <div class="story-content">
             <div class="story-visual reveal-left">
                 <div class="story-image-frame">
-                    <span class="story-big-icon">✦</span>
+                    <img class="photo-fill" src="images/orrnams-blue-lotus-set.jpg" alt="Handmade blue lotus jewellery set held in an open hand" loading="lazy">
                 </div>
                 <div class="story-stats">
                     <div class="story-stat">
@@ -2862,37 +2883,37 @@
 
         <div class="instagram-grid">
             <a href="https://www.facebook.com/profile.php?id=61555932551655" target="_blank" class="instagram-item">
-                <div class="instagram-item-bg"><span class="ig-icon">✦</span></div>
+                <div class="instagram-item-bg"><img class="photo-fill" src="images/orrnams-lily-necklace-model.jpg" alt="ORRNAMS lily necklace worn by a model" loading="lazy"></div>
                 <div class="instagram-overlay">
                     <svg viewBox="0 0 24 24" fill="currentColor" style="color:white;width:24px;height:24px;"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                 </div>
             </a>
             <a href="https://www.facebook.com/profile.php?id=61555932551655" target="_blank" class="instagram-item">
-                <div class="instagram-item-bg"><span class="ig-icon">◇</span></div>
+                <div class="instagram-item-bg"><img class="photo-fill" src="images/orrnams-lotus-pearl-necklace.jpg" alt="ORRNAMS blue lotus pearl necklace" loading="lazy"></div>
                 <div class="instagram-overlay">
                     <svg viewBox="0 0 24 24" fill="currentColor" style="color:white;width:24px;height:24px;"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                 </div>
             </a>
             <a href="https://www.facebook.com/profile.php?id=61555932551655" target="_blank" class="instagram-item">
-                <div class="instagram-item-bg"><span class="ig-icon">❀</span></div>
+                <div class="instagram-item-bg"><img class="photo-fill" src="images/orrnams-plumeria-earrings.jpg" alt="ORRNAMS plumeria and rose earrings" loading="lazy"></div>
                 <div class="instagram-overlay">
                     <svg viewBox="0 0 24 24" fill="currentColor" style="color:white;width:24px;height:24px;"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                 </div>
             </a>
             <a href="https://www.facebook.com/profile.php?id=61555932551655" target="_blank" class="instagram-item">
-                <div class="instagram-item-bg"><span class="ig-icon">❋</span></div>
+                <div class="instagram-item-bg"><img class="photo-fill" src="images/orrnams-blue-lotus-set.jpg" alt="ORRNAMS blue lotus set" loading="lazy"></div>
                 <div class="instagram-overlay">
                     <svg viewBox="0 0 24 24" fill="currentColor" style="color:white;width:24px;height:24px;"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                 </div>
             </a>
             <a href="https://www.facebook.com/profile.php?id=61555932551655" target="_blank" class="instagram-item">
-                <div class="instagram-item-bg"><span class="ig-icon">✧</span></div>
+                <div class="instagram-item-bg"><img class="photo-fill" src="images/orrnams-lily-necklace-set.jpg" alt="ORRNAMS hand-painted lily necklace set" loading="lazy"></div>
                 <div class="instagram-overlay">
                     <svg viewBox="0 0 24 24" fill="currentColor" style="color:white;width:24px;height:24px;"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                 </div>
             </a>
             <a href="https://www.facebook.com/profile.php?id=61555932551655" target="_blank" class="instagram-item">
-                <div class="instagram-item-bg"><span class="ig-icon">○</span></div>
+                <div class="instagram-item-bg"><img class="photo-fill" src="images/orrnams-sunflower-earrings.jpg" alt="ORRNAMS sunflower drop earrings" loading="lazy"></div>
                 <div class="instagram-overlay">
                     <svg viewBox="0 0 24 24" fill="currentColor" style="color:white;width:24px;height:24px;"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                 </div>
@@ -3078,7 +3099,14 @@
             document.getElementById('modalPrice').textContent = price;
 
             const modalImage = document.getElementById('modalImage');
-            modalImage.style.background = computedBg;
+            const photo = card.querySelector('.product-image-bg img');
+            if (photo) {
+                modalImage.style.background = `url("${photo.getAttribute('src')}") center 40% / cover no-repeat`;
+                modalImage.style.opacity = '1';
+            } else {
+                modalImage.style.background = computedBg;
+                modalImage.style.opacity = '';
+            }
 
             const encodedName = encodeURIComponent(name);
             document.getElementById('modalEnquiry').href = `https://wa.me/917364922016?text=Hi%20ORRNAMS!%20I%27m%20interested%20in%20the%20${encodedName}.%20Could%20you%20share%20the%20price%20and%20availability?`;
